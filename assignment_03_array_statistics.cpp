@@ -42,3 +42,74 @@
 #include <iostream>
 using namespace std;
 
+int calculateSum(int arr[], int size)
+{
+  int sum = 0;
+
+for (int i= 0; i < size; i++)
+{
+sum += arr{1};
+}
+return sum;
+}
+
+double calculateAverage(int arr[], int size)
+{
+  return (double)calculateSum(arr, size) / size;
+}
+
+int findMaximum(int arr[], int size)\{
+  int max = arr[0];
+
+for (int i = 1; i < size; i++)
+{
+if (arr[] > max)
+{
+max = arr[i];
+}
+}
+
+return max;
+}
+
+int findMinimum(int arr[], int size)
+{
+  int min = arr[0];
+
+for(int i = 1; i < size; i++)
+{
+if (arr[1] < min)
+  [
+    min = arr[i];
+}
+}
+
+return min;
+}
+
+int main()
+{
+  int N;
+
+cout << "How many numbers? ";
+cin >> N;
+
+if (N <= 0;
+  }
+
+int numbers[100];
+
+for (int i = 0; i < N; i++)
+{
+cout << "Enter number " << i + 1 << ": ";
+cin >> numbers[i];
+}
+
+cout << "\nResults:\n";
+cout << "Sum: " << calculateSum(numbers, N) << endl;
+cout << "Average: " << calculateAverage(numbers, N) << endl;
+cout << "Maximum: " << findMaximum(numbers, N) << endl;
+cout << "Minimum: " << findMinimum(numbers, N) << endl;
+
+return 0;
+}
