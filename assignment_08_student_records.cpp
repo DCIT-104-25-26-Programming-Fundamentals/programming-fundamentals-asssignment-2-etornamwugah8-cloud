@@ -83,3 +83,172 @@
 #include <iomanip>
 using namespace std;
 
+struct Student
+{
+string name;
+int id;
+vector<double> scores;
+};
+
+double calculateAverage(const Student& student)
+{
+if (student.scores.empty())
+{
+return 0.0;
+}
+
+double sum = 0;
+
+for (double score : student.scores)
+{
+sum += score;
+}
+
+return sum / student.scores.size();
+}
+
+void addStudent(vector<Student>& students)
+{
+  Student student;
+int numScores;
+
+cin.ignore();
+
+cout << "Student name: ";
+getline(cin, student.name);
+
+cout << "Student ID: ";
+cin >> student.id;
+
+cout << "How many scores? ";
+cin >> numScores;
+
+for (int i = 0; i < numScores; i++)
+{
+double score;
+  
+cout << "Enter score " << i + 1 << ": ";
+cin >> score;
+
+student.scores.push_back(score);
+}
+
+students.push_back(student);
+
+cout << "Student \"" << student.name
+<< "\" added successfully." << endl;
+}
+
+void displayStudents(const vector<Student>& students)
+{
+if (students.empty())
+{
+cout << "No students have been added yet." << endl;
+return;
+}
+
+cout << fixed << setprecision(2);
+
+cout << "\n========== STUDENT RECORDS ==========\n";
+
+for (const Student& student : students)
+{
+cout << "Name: " << student.name << endl;
+cout << "ID: " << student.id << endl;
+
+cout << "Scores: ";
+
+for (double score : student.scores)
+{
+cout << score << " ";
+
+}
+
+cout << endl;
+
+cout << "Average: "
+<< calculateAverage(student)
+<< endl;
+cout << "-----------------------------------"
+<< endl;
+}
+}
+
+void findStudentAverage(const vector<Student>& students)
+{
+if (students.empty())
+{
+cout << "No students available." << endl;
+return;
+
+}
+
+int searchID;
+
+cout << "Enter student ID: ";
+cin >> searchID;
+
+for (const Student& student : students)
+{
+if (student.id == searchID)
+{
+cout << fixed << setprecision(2);
+
+cout << student.name
+<< "'s average score: "
+<< calculateAverage(student)
+<< endl;
+
+return;
+}
+}
+
+cout << "Student ID not found." << endl;
+
+}
+
+int main()
+{
+vector<Student> students;
+int choice;
+
+do
+{
+cout << "\n=================================\n";
+cout << " STUDENT RECORD SYSTEM MENU\n";
+cout << "=================================\n";
+cout << "1. Add student\n";
+cout << "2. Display all students\n";
+cout << "3. Calculate average score\n";
+cout << "4. Quit\n";
+cout << "Enter your choice (1-4): ";
+
+cin >> choice;
+
+switch (choice)
+{
+case 1:
+addStudent(students);
+break;
+
+case 2:
+displayStudents(students);
+break;
+
+case 3:
+findStudentAverage(students);
+break;
+
+case 4:
+cout << "Goodbye!" << endl;
+break;
+
+default:
+cout << "Invalid choice. Please try again."
+<< endl;
+}
+
+} while (choice != 4);
+
+return 0;
+}
